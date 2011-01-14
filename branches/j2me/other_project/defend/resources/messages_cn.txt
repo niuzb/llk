@@ -1,0 +1,84 @@
+#######################################
+#                                     #
+#   This file contains translations   #
+#   of the application.               #
+#   Key and Value are separated       #
+#   by the equals-sign "=".           #
+#                                     #
+#######################################
+
+
+cmd.StartGame=Start Game
+cmd.Quit=Exit
+cmd.ShowLog=Show Log
+
+menu.StartGame=开始游戏
+menu.LoadGame=载入
+menu.Highscore=最高分
+menu.Quit=结束
+
+messages.welcome=欢迎您
+messages.keyany=请按任意键继续
+messages.gameover= 对不起,你失败了.
+Application.Copyright=(C) 2003
+Application.Author=Martin J. Wells
+Application.Press key=Press a key
+
+Main_Menu.Title=菜单
+Main_Menu.New_Game=新游戏
+Main_Menu.Resume_Game=继续游戏
+Main_Menu.Play_again=再玩一次
+Main_Menu.Settings=设置
+Main_Menu.Help=帮助
+Main_Menu.About=关于
+
+Settings_Menu.Title=设置
+Settings_Menu.music_on=音乐开
+Settings_Menu.music_off=音乐关
+Settings_Menu.random=重排
+Settings_Menu.hint=提示
+
+General.About=本游戏由牛志斌提供,如有任何问题,请联系niuzb1@gmail.com.
+General.Help=纯爷们之打飞机,快来玩吧.\n操作指南:\n上下左右(或者2846)来控制飞机,左软键切换武器,右软键发射核弹.游戏刚开始只有一种武器,游戏过程中吃掉绿色圆圈,可以增加武器,加血.
+
+
+
+General.Yes=确定
+General.No=取消
+General.On=开
+General.Off=关
+General.Exit=退出
+General.Back=后退
+General.Are_you_sure=您确定重新开始新的游戏吗
+General.Enable=enable
+
+play.game_over=游戏结束
+play.try_again=再来一次吧
+Play.level=关数
+Play.level=生命
+Play.guguan=恭喜你过关
+polish.command.select=选择
+
+BACKG_TILES=20
+
+BACKG_LENGTH=180
+
+ENEMY_TANK=/images/hovercraft.png
+WRECK_TANK=/images/hovercraftWreck.png
+
+ENEMY_BOMBER=/images/bomber.png
+ENEMY_BOMBER_SHADOW=/images/bomberShadow.png
+WRECK_BOMBER=/images/wreckBomber.png
+
+ENEMY_FIGHTER=/images/fighter.png
+ENEMY_FIGHTER_SHADOW=/images/fighterShadow.png
+WRECK_FIGHTER=/images/wreckFighter.png
+
+ENEMY_BOSS_1_SHOT_BATTERY_RIGHT=/images/boss1ShotBatteryRight.png
+ENEMY_BOSS_1_SHOT_BATTERY_LEFT=/images/boss1ShotBatteryLeft.png
+ENEMY_BOSS_1_ROCKET_LAUNCHER=/images/boss1RocketLauncher.png
+ENEMY_BOSS_1_MAIN_GUN=/images/boss1MainGun.png
+WRECK_BOSS_BACKGROUND=/images/wreckBossBackground.png
+WRECK_BOSS_DESTROYED=/images/boss.png
+
+

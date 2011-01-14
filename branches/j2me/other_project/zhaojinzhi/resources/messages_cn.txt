@@ -1,0 +1,61 @@
+#######################################
+#                                     #
+#   This file contains translations   #
+#   of the application.               #
+#   Key and Value are separated       #
+#   by the equals-sign "=".           #
+#                                     #
+#######################################
+
+
+cmd.StartGame=Start Game
+cmd.Quit=Exit
+cmd.ShowLog=Show Log
+
+menu.StartGame=开始游戏
+menu.LoadGame=载入
+menu.Highscore=最高分
+menu.Quit=结束
+
+messages.welcome=欢迎您
+messages.keyany=请按任意键继续
+messages.gameover= 对不起,你失败了.
+Application.Copyright=(C) 2003
+Application.Author=Martin J. Wells
+Application.Press key=Press a key
+
+Main_Menu.Title=菜单
+Main_Menu.New_Game=新游戏
+Main_Menu.Resume_Game=继续游戏
+Main_Menu.Play_again=再玩一次
+Main_Menu.Settings=设置
+Main_Menu.Help=帮助
+Main_Menu.About=关于
+
+Settings_Menu.Title=设置
+Settings_Menu.music_on=音乐开
+Settings_Menu.music_off=音乐关
+Settings_Menu.autorun_on=自动行走开
+Settings_Menu.autorun_off=自动行走关
+Settings_Menu.random=重排
+Settings_Menu.hint=提示
+
+General.About=如有任何问题,请联系echoet@sina.com
+General.Help=经典游戏,目标是找出并且吃掉所有的金块,然后通过梯子爬到最上面即可进入下一关,同时你要躲避小人的追捕.总共有300关哦,让你一次玩个够.
+
+
+General.Yes=确定
+General.No=取消
+General.On=开
+General.Off=关
+General.Exit=退出
+General.Back=后退
+General.Are_you_sure=您确定重新开始新的游戏吗
+General.Enable=enable
+
+play.game_over=游戏结束
+play.try_again=再来一次吧
+Play.level=关数
+Play.guguan=过关,生命+1
+Play.life=奖励1次生命
+polish.command.select=选择
