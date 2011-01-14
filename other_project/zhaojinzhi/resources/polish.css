@@ -1,0 +1,351 @@
+/**
+  * The polish.css files contains all
+  * design information about a project.
+  * It can be adjusted for specific devices
+  * or device groups by putting it in the 
+  * appropriate sub-folder.
+  * If you want to adjust a design for all
+  * Nokia devices, define it in "resources/Nokia/polish.css"
+  * and so on. Only new and different settings
+  * need to be specified in such polish.css files. 
+  * To keep this example easy, no subfolders are
+  * actually used here.
+  */
+
+/**
+  * the colors which are defined in
+  * the colors section can later be referenced.
+  * This makes changes easy, since the color
+  * just needs to be changed in one position.
+  * Even default colors (like blue, green, lime, etc)
+  * can be changed here. 
+  */
+colors {
+	bgColor:  rgb(185,23,130);
+	highlightedBgColor:  rgb(185,26,138);
+	botomColor:rgb(13,111,208);
+}
+backgrounds {
+
+	titleGradient {
+		type: vertical-gradient;
+		top-color: rgb( 221, 255, 223 );
+		bottom-color: green;
+	}
+	
+	
+	
+	alertTop {
+		type: round-rect;
+		color: #fff;
+	}
+	
+	alertBg {
+		type: round-rect;
+		color: #a333;
+	}
+	
+	alertOverlay {
+		color: #9fff;
+	}
+	
+	
+}
+
+/**
+  * the menu style is a predefined style for
+  * designing the fullscreen-menu.
+  * The font-settings (font-color,
+  * font-face, font-style and font-size)
+  * are used to design the menu-texts
+  * (like Options, Select, or Cancel).
+  * With the focused-style attribute
+  * another style than the default "focused"
+  * style is used for the menu. 
+  * The menubar-color can be set to any
+  * color. When "transparent" is used,
+  * the background shines through.
+  */
+menu {
+	margin-left: 2;
+	padding: 2;
+	background {
+		type: round-rect;
+		color: yellow;
+		border-width: 2;
+		border-color: yellow;
+	}
+	focused-style: .menuFocused;
+	menubar-color: highlightedBgColor;
+	font-color: #333;
+	font-style: bold;
+}
+
+
+/**
+  * The menuItem style is a predefined style
+  * for the actual commands in a fullscreen-menu.
+  * When the menuItem style is not defined,
+  * the menu style will be used instead. 
+  */
+menuItem {
+	margin-top: 2;
+	padding: 2;
+	padding-left: 5;
+	font {
+		color:  #333;
+		size: large;
+		style: bold;
+	}
+	layout: center;
+}
+
+/**
+  * This is a custom style for selected
+  * menu items. It is used, because it has
+  * been defined in the menu style. 
+  */
+.menuFocused extends .menuItem {
+	background-color: black;
+	font-color: white;
+	layout: left | horizontal-expand;
+	
+}
+
+/**
+  * The title style is a predefined style which is used
+  * for all screen-titles.
+  */
+title {
+	margin: 2;
+	padding: 2;
+	padding-top: 12;
+	padding-bottom: 12;
+	padding-right: 8;
+	font-face: proportional;
+	font-size: large;
+	font-style: bold;
+	font-color: #fff;
+	layout: center | expand;
+	text-effect: split;
+	text-split-bottom-color: #ddd;
+	background {
+		type: round-rect-split;
+		top-color: bgColor;
+		bottom-color: highlightedBgColor;
+		split-pos: 50%;
+		arc-width: 8;
+		arc-height: 8;
+	}
+}
+
+
+/**
+  * The focused style is a predefined style which
+  * is used by lists, forms, choice-groups and so on.
+  * This style will be used for highlighting the currently
+  * focused item.
+  * An interesting attribute is the "after" attribute which
+  * results in the heart which is painted after the currently
+  * focused item.
+  */
+focused {
+	/* before: url(dot.png); */
+	padding: 3;
+	padding-left: 10;
+	padding-right: 5;
+	padding-horizontal: 10;
+	background-type: round-rect;
+	background-arc: 8;
+	background-color: yellow;
+	border {
+		type: round-rect;
+		arc: 8;
+		color: yellow;
+		width: 3;
+	}
+	font {
+		style: bold;
+		color: black;
+		size: large;
+	}
+	layout: expand | left;
+	
+}
+
+/**
+  * The .mainScreen style is a static style, which
+  * is set in the MIDlet source-code with the //#style directive.
+  * If the source-code would not have defined this
+  * style, we could use the dynamic style "list" to design all
+  * list-screens. 
+  * An interesting feature is the used background, which is 
+  * animated. It starts with a white backgrounds which is
+  * transformed in 30 steps to a pink one. After that the animation
+  * is stopped.
+  */
+.mainScreen {
+	padding: 5;
+	padding-left: 15;
+	padding-right: 15;
+	background {
+		type: vertical-gradient;
+	top-color: blue;
+	bottom-color: yellow;
+	start: 0%;
+	end: 100%;
+	}
+	layout: horizontal-expand | horizontal-center | vertical-center;
+}
+
+/**
+  * The .mainCommand style is also a static style, which
+  * is set in the MIDlet source-code with the //#style directive.
+  * If the source-code would not have defined this
+  * style, we could use the dynamic style "listitem" to design all
+  * items on the list-screens. 
+  * An interesting attribute is the "icon-image" URL, which uses
+  * the %INDEX% keyword. The first list-item will use the image
+  * "icon0.png", the second "icon1.png" and so on. 
+  */
+.mainCommand {
+	margin: 2; /* for the missing border of the focused style */
+	padding: 3;
+	padding-left: 10;
+	padding-right: 5;
+	padding-horizontal: 10;
+	background: none;
+	font-color: black;
+	font-style: normal;
+	font-size: medium;
+	layout: left;
+	
+	icon-image-align: left;
+}
+/* 用于在运行游戏时，显示屏幕所用样式*/
+.playScreen {
+	padding: 5;
+	padding-left: 15;
+	padding-right: 15;
+	background {
+		type: vertical-gradient;
+	top-color: red;
+	bottom-color: white;
+	start: 0%;
+	end: 100%;
+	}
+	layout: horizontal-expand | horizontal-center | vertical-center;
+}
+/* 用于在运行游戏时，显示菜单所用样式*/
+.playCommand {
+	margin: 2; /* for the missing border of the focused style */
+	padding: 3;
+	padding-left: 10;
+	padding-right: 5;
+	padding-horizontal: 10;
+	background: none;
+	font-color: black;
+	font-style: normal;
+	font-size: medium;
+	layout: left;
+	
+	icon-image-align: left;
+}
+/*用于一关结束后，显示分数的屏幕*/
+.successScreen {
+	padding: 5;
+	padding-left: 15;
+	padding-right: 15;
+	background {
+		type: vertical-gradient;
+	top-color: red;
+	bottom-color: black;
+	start: 0%;
+	end: 100%;
+	}
+	layout: horizontal-expand | horizontal-center | vertical-center;
+}
+
+/*用于一关结束后，显示分数的菜单*/
+.successCommand {
+	margin: 2; /* for the missing border of the focused style */
+	padding: 3;
+	padding-left: 5;
+	padding-right: 5;
+	padding-horizontal: 10;
+	background: none;
+	font-color: black;
+	font-style: normal;
+	font-size: medium;
+	layout: left;
+}
+.successCommand:hover {
+	font-color: #ccc;
+	background-color: #ddd;
+	background-color-animation {
+		on: focus;
+		range: #ddd..#333;
+		duration: 1s;
+	} 
+}
+.messageAlert {
+	padding: 20px;
+	padding-top: 1px;
+	view-type: none;
+	layout: horizontal-shrink | vertical-shrink | horizontal-center | vertical-center;
+	background {
+		type: layer;
+		layers: alertTop, alertBg;
+		margins: 10px, 0px;
+	}
+	repaint-previous-screen: true;
+	title-style:messageAlertTitle;
+	font-size:large;
+}
+.messageAlertTitle {
+	padding-top: 2px;
+	font-color: #333;
+	font-style: bold;
+	font-size: normal;
+}
+.gaugeHorizontalSpheres 
+{
+	view-type: gauge-horizontal-spheres;
+	
+	gauge-horizontal-spheres-count: 10;
+	gauge-horizontal-spheres-highlight-count: 1;
+	gauge-horizontal-spheres-color: gray;
+	gauge-horizontal-spheres-highlight-color: green;
+	gauge-horizontal-spheres-interval: 500;
+	layout: horizontal-center | horizontal-expand;
+}
+.gaugeHorizontalSpheres1 
+{
+	view-type: gauge-horizontal-spheres;
+	max-height:50%;
+	max-width:50%;
+	gauge-horizontal-spheres-count: 3;
+	gauge-horizontal-spheres-highlight-count: 1;
+	gauge-horizontal-spheres-color: gray;
+	gauge-horizontal-spheres-highlight-color: green;
+	gauge-horizontal-spheres-interval: 500;
+	layout: horizontal-center | horizontal-expand;
+}
+alert extends .mainScreen {
+}
+
+alertcontent {
+	font-color: highlightedBgColor;
+	font-size: small;
+	font-style: bold;
+}
+
+.loadGameAlert {
+	margin: 20;
+	padding: 5;
+	padding-left: 15;
+	padding-right: 15;
+	layout: horizontal-expand | horizontal-center | vertical-center;
+	background-color: argb( 100, 255, 0, 0 ); /*translucentBgColor; */
+	show-dismiss-command: false;
+}
