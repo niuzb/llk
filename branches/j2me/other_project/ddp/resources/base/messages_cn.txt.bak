@@ -1,0 +1,63 @@
+#######################################
+#                                     #
+#   This file contains translations   #
+#   of the application.               #
+#   Key and Value are separated       #
+#   by the equals-sign "=".           #
+#                                     #
+#######################################
+
+
+cmd.StartGame=Start Game
+cmd.Quit=Exit
+cmd.ShowLog=Show Log
+
+menu.StartGame=开始游戏
+menu.LoadGame=载入
+menu.Highscore=最高分
+menu.Quit=结束
+
+messages.welcome=欢迎您
+messages.keyany=请按任意键继续
+Application.Copyright=(C) 2003
+Application.Author=Martin J. Wells
+Application.Press key=Press a key
+
+Main_Menu.Title=菜单
+Main_Menu.New_Game=新游戏
+Main_Menu.Resume_Game=继续游戏
+Main_Menu.Play_again=再玩一次
+Main_Menu.Settings=设置
+Main_Menu.Help=帮助
+Main_Menu.About=关于
+
+Settings_Menu.Title=设置
+Settings_Menu.music_on=音乐开
+Settings_Menu.music_off=音乐关
+Settings_Menu.random=重排
+Settings_Menu.hint=提示
+
+General.About=如有任何问题,请联系niuzb1@gmail.com.
+General.Help=只要把相加等于十的两个图案找出来,它们就会消失,需要获得一定的分数才能通过一关.游戏中提供两种道具:炸弹和闪电，炸弹可清除周围的图案,闪电可清除最下面两层的图案.在游戏菜单中,可通过数字键选中某个菜单,从1开始由上到下排列
+
+
+
+General.Yes=确定
+General.No=取消
+General.On=开
+General.Off=关
+General.Exit=退出
+General.Back=后退
+General.Are_you_sure=您确定重新开始新的游戏吗
+General.Enable=enable
+
+SuccessDisplay.score=得分:
+SuccessDisplay.gg=恭喜过关
+SuccessDisplay.congratulation=恭喜您过了第{0}关,奖励您1次重排
+SuccessDisplay.lefttime=+剩余时间:
+SuccessDisplay.sumscore=总分:
+SuccessDisplay.leftscore=剩余得分:
+SuccessDisplay.addrand=重排: 20分 * 
+SuccessDisplay.addhint=提示: 10分 * 
+
+var:polish.command.select=选择
