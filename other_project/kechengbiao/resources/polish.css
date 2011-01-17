@@ -1,0 +1,383 @@
+/** 
+  * The polish.css files contains all
+  * design information about a project.
+  * You can use preprocessing to adjust it to different 
+  * settings.
+  */
+
+/**
+  * the colors which are defined in
+  * the colors section can later be referenced.
+  * This makes changes easy, since the color
+  * just needs to be changed in one position.
+  * Even default colors (like blue, green, lime, etc)
+  * can be changed here. 
+  */
+colors {
+	bgColor:  rgb(132,143,96);
+	focusedBgColor:  rgb(238,241,229);
+	cellColor:  #dfdfaa;
+	translucentBgColor:  argb(130, 238,241,229);
+	fontColor: rgb( 30, 85, 86 );
+	focusedFontColor: rgb(238,241,229);
+	bgColor:  rgb(197,197,252);
+	focusedBgColor:  white;
+	translucentBgColor:  argb(130, 238,241,229);
+	fontColor: black;
+	focusedFontColor: rgb(238,241,229);
+        maskColor: red;
+	noteBgColor: bgColor;
+	noteFontColor: focusedFontColor;
+        brightBgColor:  rgb(203,205,254);
+        brightFontColor:red;
+	brightFontColor: black;
+	titleColor: black;
+}
+
+/************************ Common backgrounds **************************************************************/
+backgrounds {
+	screenBackground {
+		type: vertical-gradient;
+		top-color: #f6ec5d;
+		bottom-color: #c3b81e;
+	}
+	tableSelection {
+		color: #ffc;
+	}
+	
+	titleGradient {
+		type: vertical-gradient;
+		top-color: bgColor;
+		bottom-color: blue;
+	}
+	
+	maskBackground {
+		type: polygon;
+		points: 5,90 55,0 105,90 155,0 205,90;
+		reference-width: 210;
+		reference-height: 100;
+		scale-mode: scale;
+		color: maskColor;
+	}
+	
+	alertTop {
+		type: round-rect;
+		color: #fff;
+	}
+	
+	alertBg {
+		type: round-rect;
+		color: #a333;
+	}
+	
+	alertOverlay {
+		color: #9fff;
+	}
+}
+
+/************************ Demo Screen ********************************************************************/
+
+.mainScreen {
+	padding: 2;
+	layout: horizontal-expand | horizontal-center | top;
+	background :screenBackground;
+}
+
+.defaultTable {
+	   padding: 3;
+   padding-horizontal: 4;
+   font-color: black;
+   font-size: small;
+   table-selected-background: tableSelection;
+   background {
+           type: round-rect;
+           color: #dfdfaa;
+   }
+   layout: center;
+   
+	
+}
+
+.defaultTable:hover {
+	padding: 1;
+	padding-vertical: 3;
+	border {
+		
+		width: 2;
+		color: #333;
+	}
+}
+.input {
+	padding: 2;
+	padding-left: 5;
+	padding-vertical: 1;
+	background {
+		
+		color: white;
+	}
+	
+	focused-style: .inputFocused;
+	layout: left | expand;
+}
+
+.inputFocused {
+	padding: 1;
+	padding-left: 3;
+	background {
+		
+		color: white;
+		border-color: yellow;
+		border-width: 3;
+	}
+	layout: left | expand;	
+}
+.heading {
+	font-color: #333;
+	font-style: bold;
+	font-size: small;
+}
+
+.heading:hover {
+	font-color: #000;
+}
+
+.centeredCell {
+	padding: 0;
+	font-color: black;
+	
+	layout: center;
+	
+	font-size: small;
+}
+
+.centeredCell:hover {
+	font-color: #222;
+}
+
+.textinput {
+	padding: 1px;
+	include-label: true;
+	min-width:10%;
+	background {
+		
+		color: cellColor;
+	}
+}
+
+.textinput:hover {
+	padding: 1px;
+	background-color: white;
+	
+}
+
+info {
+	layout: right;
+	background-color: #ee8;
+}
+
+.popupChoice {
+	padding: 2px;
+}
+
+.popupChoice:hover {
+	padding: 1px;
+	border-color: black;
+	background-color: white;
+}
+
+.popupChoiceItem {
+}
+
+.popupChoiceItem:hover {
+	font-color: white;
+	background-color: #333;
+}
+
+/************************  Error / Warning  ****************************************************************/
+
+.screenWarning {
+	background-color: red;
+	font-size: large;
+}
+
+/************************  General Purpose Styles  ****************************************************************/
+
+/**
+  * The title style is a predefined style which is used
+  * for all screen-titles.
+  */
+title {
+	padding: 2;
+	font-face: proportional;
+	font-size: large;
+	font-style: bold;
+	font-color: brightFontColor;
+	border: none;
+	layout: horizontal-center | horizontal-expand;
+	/*	
+	background-color: bgColor;
+	*/
+	
+	background: titleGradient;
+}
+
+
+
+label {
+	padding: 2px;
+	font-color: #150020;
+	font-size: small;
+	font-style: plain;
+	layout: newline-after;
+}
+
+/*********************** ScrollBar        ****************************************************************/
+scrollbar {
+	scrollbar-slider-color: #301e3a;
+}
+
+
+
+/************************  Commands Menu  ****************************************************************/
+
+menu {
+	padding: 0;
+	padding-bottom: 3;
+	min-width: 100;
+	font-size: medium;
+	view-type: slide-up;
+	background {
+		type: round-tab;
+		color: #301e3a;
+	}
+	expand-items: true;
+	
+}
+
+
+/**
+  * The menuItem style is a predefined style
+  * for the actual commands in a fullscreen-menu.
+  * When the menuItem style is not defined,
+  * the menu style will be used instead. 
+  */
+menuItem {
+	padding: 3;
+	font {
+		color: white;
+		size: medium;
+		style: bold;
+	}
+	layout: left;
+	border {
+		type: bottom;
+		color: #999;
+	}
+}
+
+/**
+  * This is a custom style for focused menu items.  
+  */
+/*************   MENU BAR     *************/
+
+menubar {
+	margin: 0;
+	padding-top: 3;
+	padding: 2;
+	background: titleGradient;
+}
+
+/**
+ * Commands within the menubar on the left side
+ */
+leftcommand
+{
+	margin: 0;
+    //#if polish.key.MiddleSoftKey:defined or polish.MenuBar.useMiddleCommand
+    	/* the middle command is used, so lower the left and right commands relatively */
+		padding-top: 7;
+	//#endif
+	padding-bottom: 0;
+	font-color: black;
+	
+	/*
+	text-effect: vertical-gradient;
+	text-vertical-gradient-end-color: #eee;
+	text-vertical-gradient-start-color: #000;
+	
+	text-effect: shadow;
+	text-shadow-color: #333;*/
+	font-size: large;
+}
+
+/**
+ * Commands within the menubar on the right side
+ */
+rightcommand extends leftcommand
+{
+	layout: right;
+}
+
+middlecommand extends leftcommand {
+	padding-top: 1;
+	font-color: black;
+}
+
+
+
+/**
+  * the menu style is a predefined style for
+  * designing the fullscreen-menu.
+  * The font-settings (font-color,
+  * font-face, font-style and font-size)
+  * are used to design the menu-texts
+  * (like Options, Select, or Cancel).
+  * With the focused-style attribute
+  * another style than the default "focused"
+  * style is used for the menu. 
+  */
+menu {
+	margin-left: 2;
+	padding: 2;
+	background {
+		type: round-rect;
+		color: brightBgColor;
+		border-width: 2;
+		border-color: bgColor;
+	}
+	font-color: brightFontColor;
+	font-style: bold;
+	view-type: slide-up;
+	/*
+	view-type: numbered;
+	*/
+}
+menuItem {
+	margin-top: 2;
+	padding: 2;
+	padding-left: 5;
+	font {
+		color: fontColor;
+		size: medium;
+		style: bold;
+	}
+	layout: left;
+	/*
+	label-style: menuLabel;
+	*/
+}
+
+/**
+  * A focused menuItem
+  */
+menuItem:hover {
+	background-color: yellow;
+	font-color: brightFontColor;
+	layout: left | horizontal-expand;
+	/*
+	label-style: menuLabelFocused;
+	include-label: true;
+	*/
+}
+
+
