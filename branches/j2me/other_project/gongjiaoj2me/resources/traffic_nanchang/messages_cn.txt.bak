@@ -1,0 +1,53 @@
+#######################################
+#                                     #
+#   This file contains translations   #
+#   of the application.               #
+#   Key and Value are separated       #
+#   by the equals-sign "=".           #
+#                                     #
+#######################################
+
+
+
+cmd.exit=退出
+cmd.back=后退
+
+cmd.sec=查询
+
+title.main=郑州公交查询
+title.introduction=换乘
+title.road=线路
+title.station=站点
+title.out=查询结果
+
+
+
+label.start_station=起始站:
+label.end_station=终点站:
+label.road=线路:
+label.station=站点:
+label.inputvalid=输入无效,请重新输入
+label.stationresult=经过站点[{0}]的线路有[{1}]个:
+label.interstationresult=从站点[{0}]到站点[{1}]的方案有[{2}]个:
+label.interoneroad=从站点[{0}]上车,乘坐线路[{1}]
+label.intertworoad1=在站点[{0}]下车,再乘坐线路[{1}],到达终点[{2}]
+label.interoneroad2=请乘坐线路[{0}]
+General.serarchnothing=对不起,没有找到信息
+General.Save=保存
+General.choose=请选择
+General.Yes=确定
+General.No=取消
+General.Exit=退出
+General.Back=后退
+General.Input=输入
+road.name=名称
+road.time=时间
+road.info=上行
+road.info1=下行
+road.info2=路线
+var:polish.command.select=选择
+var:polish.command.options=选项
+var:polish.command.delete=删字
+var:polish.command.clear=清除内容
+var:polish.command.cancel=取消
+var:polish.command.ok=确定

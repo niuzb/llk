@@ -1,0 +1,516 @@
+colors {
+	bgColor: white;
+	highlightedBgColor:  rgb(165,190,247);
+	
+	titleShadowColor: silver;
+	screenBgColor: #7272f4;
+	screenBgBottomColor: #99f;
+	fontColor: black;
+	focusedFontColor: black;
+	inactiveFontColor: white;
+	menubarColor: #6262d4;
+	activeTabColor: #7272f4; 
+	inactiveTabColor: silver;
+	/* the color which is used for overlays when a screen defines the repaint-previous-screen CSS attribute: */
+	overlay: argb( 150, 0, 0, 0 );
+	bgColor:  rgb(132,143,96);
+	focusedBgColor:  rgb(238,241,229);
+	translucentBgColor:  argb(130, 238,241,229);
+	fontColor: black;
+	focusedFontColor: rgb(238,241,229);
+        maskColor: red;
+	noteBgColor: bgColor;
+	noteFontColor: focusedFontColor;
+        brightBgColor:  rgb(165,190,247);
+        brightFontColor:red;
+	brightFontColor: black;
+	titleColor: black;
+}
+backgrounds {
+
+	titleGradient {
+		type: vertical-gradient;
+		top-color: rgb( 221, 255, 223 );
+		bottom-color: blue;
+	}
+	
+	maskBackground {
+		type: polygon;
+		points: 5,90 55,0 105,90 155,0 205,90;
+		reference-width: 210;
+		reference-height: 100;
+		scale-mode: scale;
+		color: #222;
+	}
+	
+	alertTop {
+		type: round-rect;
+		color: #fff;
+	}
+	
+	alertBg {
+		type: round-rect;
+		color: #a333;
+	}
+	
+	alertOverlay {
+		color: #9fff;
+	}
+	tableSelection {
+		color: #ffc;
+	}
+	headcell {
+		color: argb( 150, 255, 0, 255 );
+	}
+	tablehead {		
+		color: rgb( 221, 255, 223 );		
+	}
+	
+}
+.busyIndicator {
+    view-type: gauge-cycling-icons;
+    gauge-cycling-icons-image: url( red.png );
+    gauge-cycling-icons-highlight-image: url( yellow.png );
+    gauge-cycling-icons-count: 10;
+    gauge-cycling-icons-highlight-count: 1;
+}
+
+.searchbutton {
+
+    	//#if polish.midp2 and polish.hasFloatingPoint
+                text-effect: alien-glow;
+        //#endif
+        layout: horizontal-center | horizontal-expand;
+        font {
+                face: proportional;
+                size: large;
+                style: bold;
+                color: black;
+        }
+        text-layout:horizontal-center;
+        background {
+		type: diagonal-gradient;
+		color: rgb( 221, 255, 223 );
+		target-color: blue;
+	}
+	background-height:40;
+	background-width:70;
+	background-anchor:horizontal-center | vertical-center;
+	border {
+		type: drop-shadow;
+		inner-color: rgb( 221, 255, 223 );
+		outer-color: blue;
+		width: 3;
+		orientation: all;
+	}
+	focused-style:.focussearchbutton;
+	
+ }
+ .roaditem {
+
+
+        layout: horizontal-center | horizontal-expand;
+        font {
+                face: proportional;
+                size: small;
+                color: black;
+        }
+        background:headcell;
+	text-layout:horizontal-center | vertical-shrink | v-center;
+	focused-style:.focusroaditem;
+	
+ }
+ .focusroaditem extends roaditem {
+ 	font-color:yellow;
+ }
+ .focussearchbutton extends searchbutton{
+  font {
+                face: proportional;
+                size: large;
+                style: bold;
+                color: red;
+        }
+ }
+.filterTextFieldStyle {
+	margin-left: 2;
+	margin-right: 2;
+	before: url( search.png );
+	background {
+		color: white;
+		border-color: black;
+	}
+	layout: expand | left;
+}
+.tabbedForm {
+	padding: 4;
+	layout: hcenter | vcenter;
+	background {
+		type: vertical-gradient;
+		top-color: rgb( 221, 255, 223 );
+		bottom-color: blue;
+	}
+	/* not supported because we use the extended menu bar:
+	menubar-color: menubarColor;
+	*/
+
+	title-style: solidTitle;
+	/* position the tabbar at the bottom: 
+	subtitle-position: bottom;
+	*/
+}
+.imageItem
+{
+	
+	
+	
+}
+
+.messageAlert {
+	padding: 20px;
+	padding-top: 1px;
+	view-type: none;
+	layout: horizontal-shrink | vertical-shrink | horizontal-center | vertical-center;
+	background {
+		type: layer;
+		layers: alertTop, alertBg;
+		margins: 10px, 0px;
+	}
+	repaint-previous-screen: true;
+	title-style:messageAlertTitle;
+	
+}
+.messageAlertTitle {
+	padding-top: 2px;
+	font-color: #333;
+	font-style: bold;
+	font-size: normal;
+}
+
+tabbar {
+	background-color: rgb( 218, 237, 254 );
+	layout: expand;
+	padding-bottom: 0;
+	tabbar-left-arrow: url( left.png );
+	tabbar-right-arrow: url( right.png );
+	tabbar-arrow-y-offset: 0;
+	tabbar-roundtrip: true;
+	/* not supported, since we use arrow images:
+	tabbar-scrolling-indicator-color: COLOR_FOREGROUND;
+	*/
+}
+
+tabbar:hover {
+	background-color: red;
+}
+
+activetab {
+	padding: 3;
+	padding-left: 10;
+	padding-right: 8;
+	padding-top: 7;
+	background-type: round-tab;
+	background-color: rgb( 139, 199, 252 );
+	background-arc: 8;
+	font-color: black;
+	font-style: bold;
+}
+
+inactivetab {
+	margin-left: 2;
+	margin-right: 2;
+	margin-bottom: 1;
+	padding: 3;
+	padding-left: 6;
+	padding-right: 4;
+	background-type: round-tab;
+	background-color: rgb( 218, 237, 254 );
+	background-arc: 8;
+	font-color: gray;
+}
+.introText {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	/*
+	background-color: #fff;
+	*/
+	font-color: #d00;
+	font-style: bold;
+	font-size:medium;
+}
+
+.introText1 extends introText {
+	x-adjust: -110%;
+	x-adjust-animation {
+		on: show;
+		range: -100%..0%;
+		duration: 2s;
+		
+	}
+}
+.introText2 extends introText {
+	before:url( item.png );
+}
+.settingsChoice {
+	padding: 2;
+	layout: expand | left;
+}
+
+.settingsItem {
+	radiobox-plain: none;
+	padding: 3;
+	padding-horizontal: 5;
+	font-color: fontColor;
+	font-size: large;
+	layout: expand | left;
+	text-effect: html;
+	text-wrap: false;
+}
+
+.settingsItem:hover {
+	padding: 2;
+	padding-horizontal: 5;
+	border-width: 1;
+	border-color: black;
+}
+
+.distance {
+ always-include: true;
+ font-color: #555;
+ layout: vertical-center; 
+}
+
+.filterPopupStyle {
+	
+	margin-bottom: 0;
+	padding: 5;
+	background-color: yellow;
+	/* not needed, since .filterTextFieldStyle is used by default:
+	filter-style: filterTextFieldStyle;*/
+	
+}
+
+.filterTextFieldStyle {
+	margin-left: 2;
+	margin-right: 2;
+	before: url( search.png );
+	background {
+		color: white;
+		border-color: black;
+	}
+	layout: expand | left;
+}
+
+
+/**
+  * The title style is a predefined style which is used
+  * for all screen-titles.
+  */
+title {
+	padding: 2;
+	font-face: proportional;
+	font-size: large;
+	font-style: bold;
+	font-color: brightFontColor;
+	border: none;
+	layout: horizontal-center | horizontal-expand;
+	/*	
+	background-color: bgColor;
+	*/
+	
+	background: titleGradient;
+}
+
+/**
+  * The focused style is a predefined style which
+  * is used by lists, forms, choice-groups and so on.
+  * This style will be used for highlighting the currently
+  * focused item.
+  */
+focused {
+	font-style: bold;
+	font-color:red;
+	
+		
+}
+.solidTitle extends title {
+	background-color: white;
+}
+
+label {
+	padding: 2;
+	font-color: inactiveFontColor;
+	font-size: large;
+	
+	layout: left;
+}
+
+.labelFocused extends label {
+	font-color: fontColor;
+}
+
+.input {
+	label-style: inputLabel;
+	padding: 1px;
+	margin: 1px;
+	background-color: silver;
+	font-color: #333;
+	layout: expand | left;
+	font-size: large;
+	font-style: bold;
+}
+
+.input:hover {
+	margin: 0px;
+	font-color: #000;
+	background-color: #fff;
+	border {
+		color: #000;
+		width: 1;
+	}
+}
+
+.inputLabel{
+	min-width: 20%;
+}
+
+info {
+	margin-right: 10;
+	margin-top: 4;
+	padding: 2;
+	font-size: large;
+	layout: right;
+	background-color: argb( 200, 255, 255, 255 );
+}
+
+menu {
+	margin-top: 24;
+	/* background-color: argb( 200, 255, 255, 255 ); */
+	background-color: gray;
+	min-width: 120;
+	font-style: bold;
+	font-size: large;
+	font-color: fontColor;	
+	border-color: red;
+}
+
+
+
+
+menuitem {
+	padding: 2;
+	font-style: bold;
+	font-size: large;
+	font-color: COLOR_FOREGROUND;	
+	command-child-indicator-width: 4;
+	command-child-indicator-height: 4;
+}
+
+
+menubar {
+	margin: 0;
+	padding-top: 3;
+	padding: 2;
+	background: titleGradient;
+}
+
+leftcommand
+{
+	margin: 0;
+    //#if polish.key.MiddleSoftKey:defined or polish.MenuBar.useMiddleCommand
+    	/* the middle command is used, so lower the left and right commands relatively */
+		padding-top: 7;
+	//#endif
+	padding-bottom: 0;
+	font-color: black;
+	
+	/*
+	text-effect: vertical-gradient;
+	text-vertical-gradient-end-color: #eee;
+	text-vertical-gradient-start-color: #000;
+	
+	text-effect: shadow;
+	text-shadow-color: #333;*/
+	font-size: large;
+}
+
+rightcommand extends leftcommand {
+	layout: right;
+}
+
+.notificationAlert {
+	padding: 3;
+	layout: h-shrink | v-shrink | h-center | v-center; /* bottom; */
+	background {
+		type: round-rect;
+		color: yellow;
+		border-color: titleColor;
+		border-width: 2;
+	}
+	repaint-previous-screen: true;
+}
+
+alertText {
+	font-color: inactiveFontColor;
+	font-size: large;
+	font-style: bold;	
+}
+
+.defaultTable {
+	padding: 1;
+	padding-vertical: 6;
+	font-color: gray;
+	font-size: large;
+	table-selected-background: tableSelection;
+	background {
+		type: round-rect;
+		color: #dfdfaa;
+	}
+	layout: center;
+	columns-width: 10,90;
+	scroll-mode:normal;
+	view-type:slide;
+}
+
+.centeredCell {
+	padding: 0;
+	font-color: black;
+	font-size: small;
+	layout: center;
+}
+.heading {
+	font-color: #333;
+	font-style: bold;
+	font-size: small;
+	background:tablehead;
+}
+.centeredCell:hover {
+	font-color: #222;
+}
+.textFieldSymbolList {
+	padding: 3;
+	margin-left: 3;
+	margin-right: 3;
+	layout: horizontal-shrink | vertical-shrink | horizontal-center | bottom;
+	columns: 4;
+	columns-width: equal;
+	repaint-previous-screen: true;
+	focused-style: .textFieldSymbolFocused;
+	background {
+		type: round-rect;
+		color: rgb( 220, 220, 220 );
+		border-color: titleColor;
+		border-width: 2;
+	}
+}
+
+.textFieldSymbolItem {
+	layout: expand | center;
+	font-color: gray;
+	font-style: bold;
+}
+
+.textFieldSymbolFocused extends .textFieldSymbolItem {
+	font-color: black;
+	background-color: yellow;
+}
+

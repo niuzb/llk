@@ -1,0 +1,512 @@
+<!-- IMPORTANT:                                               -->
+<!-- Change the <midlet> definition in the build-section      -->
+<!-- below.                                                   -->
+<!--                                                          -->
+<!-- This file controls the build process.                    -->
+<!-- The most important target is the j2mepolish-target,      -->
+<!-- which controls for what devices the application should   -->
+<!-- be created and so on.                                    -->
+<!--                                                          -->
+<!-- The full documentation can be found at                   -->
+<!-- http://www.j2mepolish.org                                -->
+<!--                                                          -->
+<!-- Have fun!                                                -->
+<project 
+	name="blank" 
+	default="j2mepolish">
+	
+	<!-- import user specific properties                          -->
+	<property file="${user.name}.properties" />
+	
+	<!-- The polish.home property needs to point to the directory -->
+	<!-- containing the J2ME Polish installation.                 -->
+	<property name="polish.home" location="C:\Program Files\J2ME-Polish" />
+	
+	<!-- import global properties                                 -->
+	<property file="${polish.home}/global.properties" />
+
+		
+	<!-- the device for the test mode - you can define it on the command-line
+	     using the -D switch, e.g. ant -Ddevice=Generic/midp2 emulator -->
+	<property name="device" value="Generic/AnyPhone,Generic/jtwi,Generic/Midp2Cldc11,Nokia/Series40E3,Nokia/Series60E2,Nokia/Series60E3,Sony-Ericsson/JavaPlatform7,,Sony-Ericsson/JavaPlatform8"/>
+	<property name="devices" value="Generic/AnyPhone,Nokia/Series60E2"/>
+	
+	
+
+	<!-- Definition of the J2ME Polish task:                      -->
+	<taskdef name="j2mepolish" 
+		classname="de.enough.polish.ant.PolishTask" 
+		classpath="${polish.home}/lib/enough-j2mepolish-build.jar"
+	/>
+	
+		
+	<!-- build targets, each target can be called via "ant [name]", 
+		 e.g. "ant clean", "ant test j2mepolish" or just "ant" for calling the default-target -->
+				
+	<target name="init">
+	  	<property name="test" value="false" />
+	  	<property name="customization" value="" /><!-- use empty value in case none has been set before -->
+		<property name="dir.work" value="build/real/${customization}" />
+		<property name="dir.dist" value="dist/${customization}" />
+		<property name="deploy-url" value="" />
+	</target>
+	 
+	<!-- In this target the J2ME Polish task is used.             -->
+	<!-- It has 4 sections:                                       -->
+	<!--    1. The info-section defines some general information  -->
+	<!--    2. The deviceRequirements-section chooses the devices -->
+	<!--       for which the application is build.                -->
+	<!--    3. The build-section controls the actual build        -->
+	<!--       process.                                           -->	
+	<!--    4. The emulator-section calls the emulator            -->
+	<target name="j2mepolish" 
+			depends="init"
+			description="This is the controller for the J2ME build process." 
+			>
+		<j2mepolish>
+		    <!-- general settings, these settings basically form the JAD-attributes. -->
+		    <!-- Have a look at the <jad>-section for setting specialised attributes.
+		         You can also define localized attributes in the resources/messages.txt files -->
+			<info
+				name="${customization}"
+				version="1.0.3"
+				description="traffic of china"
+				vendorName="Enough Software"
+				icon="dot.png"
+				jarName="${polish.vendor}-${polish.name}-${polish.locale}-${customization}.jar" 
+				
+			/>
+			<!-- selection of supported devices -->
+			<deviceRequirements if="test">
+				<requirement name="Identifier" value="${device}" />
+			</deviceRequirements>
+			<deviceRequirements unless="test">
+				<requirement name="Identifier" value="${devices}" />
+				<!-- on could use other devices for real builds, e.g. :
+				<requirement name="Term" value="polish.api.nokia-ui and polish.midp2" />
+				or:
+				<or>
+					<and>
+						<requirement name="JavaPackage" value="nokia-ui" />
+						<requirement name="BitsPerPixel" value="16+" />
+					</and>
+				</or>
+				 -->
+			</deviceRequirements>
+		    <!-- build settings -->
+			<build
+				symbols="ExampleSymbol, AnotherExample"
+				fullscreen="menu"
+				usePolishGui="true"
+				workDir="${dir.work}"
+				destDir="${dir.dist}"
+			>
+				<!-- midlets definition -->
+				<!-- CHANGE THIS!       -->
+				<midlet class="cn.com.xianlee.TabbedFormDemo" name="${customization}" />
+				<!-- project-wide variables - used for preprocessing.  -->
+				<!-- You can set localized variables in the resources/messages.txt files as well.  -->
+				<variables includeAntProperties="true" >
+					<!-- <variable file="configuration/configuration.properties" />
+					allow customized configuration settings: 
+					<variable file="configuration/${customization}/configuration.properties" />
+					<variable name="polish.FullScreen" value="false" if="polish.android" />-->
+					<!-- Sample configuration options for J2ME Polish
+					<variable name="polish.TextField.useDirectInput" value="true" />
+					<variable name="polish.TextField.supportSymbolsEntry" value="true" />
+					<variable name="polish.MenuBar.useExtendedMenuBar" value="true" />
+					<variable name="polish.useScrollBar" value="true" />
+					-->
+					<variable name="polish.useScrollBar" value="true" />
+					<variable name="polish.TextField.allowNativeModeSwitch" value="true" />
+					<variable name="polish.TextField.suppressCommands" value="true"/>
+					<variable name="polish.MenuBar.useExtendedMenuBar" value="true" />
+					<variable name="currentCity" value="${customization}" />
+				</variables>
+				<!-- Configure the customization settings here: -->
+				<resources
+					dir="resources/base"
+					defaultexcludes="yes"
+					excludes="readme.txt,messages_cn.txt.bak"
+				>
+					<root dir="resources/base/images" />
+					<root dir="resources/base/sounds" />
+					<root dir="resources/${customization}" if="build.${customization}" />
+					<root dir="resources/${customization}/images" if="build.${customization}" />
+					<root dir="resources/${customization}/sounds" if="build.${customization}" />
+					<!-- add the localization element for created localized
+					     versions of your application: 
+					-->
+					<localization>		
+						<locale name="cn" encoding="GB2312" />
+					</localization>
+				</resources>
+				<!-- obfuscator settings: do not obfuscate when the test-property is true -->
+				<obfuscator name="ProGuard" unless="test or polish.blackberry" >
+					<!--
+					You can set additional parameters here, e.g.:
+					<parameter name="optimize" value="false" />
+					-->
+				</obfuscator>
+				<!-- log settings: only use debug setting when the test-property is true -->
+				<debug  verbose="true" level="error">
+					
+					<!-- example for writing log entries to the Recordstore Management System: 
+					<handler name="rms" />
+					-->
+				</debug>
+				<!-- user defined JAD attributes can also be used: -->
+				<jad>
+					<attribute name="Nokia-MIDlet-Category" value="Game" if="polish.group.Series40" />
+				</jad>	
+			</build>
+			
+			<!-- execution of emulator(s) -->
+			<emulator
+				wait="true"
+				securityDomain="trusted"
+				enableProfiler="true"
+				enableMemoryMonitor="true"
+				enableNetworkMonitor="true"
+				if="debug"
+				>
+				<!-- this is an example for connecting to a debugger - use the ${polish.debug.port} Ant property
+				     for getting to know the port of the debugger. In this example the 
+				     "connect-debugger" target is also required.
+				-->
+				<!--
+				<debugger name="antcall" target="connect-debugger" port="6001" />
+				-->
+			</emulator>
+                        
+			<emulator
+				wait="true"
+				trace="none"
+				securityDomain="trusted"
+				enableProfiler="false"
+				enableMemoryMonitor="false"
+				enableNetworkMonitor="false"
+				if="debug"
+				>
+			</emulator>
+
+		
+		</j2mepolish>
+	</target>
+	
+	<target name="setdeploy" 
+		description="Call this target first to set the OTA download-URL, e.g. ant setdeploy j2mepolish"
+		>
+		<property name="deploy-url" value="http://www.company.com/download/" />
+	</target>
+	
+	<target name="enableDebug" 
+		>
+		<property name="debug" value="true" />
+	</target>
+	
+		
+	<target name="enableEmulator" 
+		>
+		<property name="test" value="true" />
+	  	<property name="customization" value="" /><!-- use empty value in case none has been set before -->
+		<property name="dir.work" value="build/test/${customization}" />
+	</target>
+
+	<target 
+		name="emulator"
+		depends="enableEmulator,j2mepolish"
+		description="invokes the emulator"
+	>
+	</target>
+
+	<target name="clean" 
+	  		description="allows a clean build. You should call [ant clean] whenever you made changes to devices.xml, vendors.xml or groups.xml">
+		<delete dir="build" />
+		<delete dir="dist" includes="**/*" />
+	</target>
+
+	<target  
+		name="cleanbuild"
+		description="allows a clean build. You should call [ant cleanbuild] whenever you made changes to devices.xml, vendors.xml or groups.xml"
+		depends="clean, j2mepolish"
+	/>
+	
+    <target name="debug" description="debugs the project" depends="enableDebug, enableEmulator, j2mepolish" />
+	
+	
+	
+	<target name="enabletraffic_sz">
+		<property name="customization" value="traffic_sz" />
+		<property name="build.traffic_sz" value="true" />
+	</target>
+		
+	<target name="buildtraffic_sz"
+			description="customizes this project with the settings found in resources/traffic_sz"
+			depends="enabletraffic_sz, j2mepolish"
+	/>
+	<target name="enabletraffic_bj">
+		<property name="customization" value="traffic_bj" />
+		<property name="build.traffic_bj" value="true" />
+	</target>
+		
+	<target name="buildtraffic_bj"
+			description="customizes this project with the settings found in resources/traffic_bj"
+			depends="enabletraffic_bj, j2mepolish"
+	/>
+	
+	
+	<target name="enabletraffic_sh">
+		<property name="customization" value="traffic_sh" />
+		<property name="build.traffic_sh" value="true" />
+	</target>
+		
+	<target name="buildtraffic_sh"
+			description="customizes this project with the settings found in resources/traffic_sh"
+			depends="enabletraffic_sh, j2mepolish"
+	/>
+	
+	<target name="enabletraffic_guangzhou">
+		<property name="customization" value="traffic_guangzhou" />
+		<property name="build.traffic_guangzhou" value="true" />
+	</target>
+		
+	<target name="buildtraffic_guangzhou"
+			description="customizes this project with the settings found in resources/traffic_guangzhou"
+			depends="enabletraffic_guangzhou, j2mepolish"
+	/>
+	
+	<target name="enabletraffic_zhengzhou">
+		<property name="customization" value="traffic_zhengzhou" />
+		<property name="build.traffic_zhengzhou" value="true" />
+	</target>
+		
+	<target name="buildtraffic_zhengzhou"
+			description="customizes this project with the settings found in resources/traffic_zhengzhou"
+			depends="enabletraffic_zhengzhou, j2mepolish"
+	/>
+	<target name="enabletraffic_wuhan">
+		<property name="customization" value="traffic_wuhan" />
+		<property name="build.traffic_wuhan" value="true" />
+	</target>
+		
+	<target name="buildtraffic_wuhan"
+			description="customizes this project with the settings found in resources/traffic_wuhan"
+			depends="enabletraffic_wuhan, j2mepolish"
+	/>
+	<target name="enabletraffic_chengdu">
+		<property name="customization" value="traffic_chengdu" />
+		<property name="build.traffic_chengdu" value="true" />
+	</target>
+		
+	<target name="buildtraffic_chengdu"
+			description="customizes this project with the settings found in resources/traffic_chengdu"
+			depends="enabletraffic_chengdu, j2mepolish"
+	/>
+	
+	<target name="enabletraffic_changsha">
+		<property name="customization" value="traffic_changsha" />
+		<property name="build.traffic_changsha" value="true" />
+	</target>
+		
+	<target name="buildtraffic_changsha"
+			description="customizes this project with the settings found in resources/traffic_changsha"
+			depends="enabletraffic_changsha, j2mepolish"
+	/>
+	
+	
+	<target name="enabletraffic_dalian">
+		<property name="customization" value="traffic_dalian" />
+		<property name="build.traffic_dalian" value="true" />
+	</target>
+		
+	<target name="buildtraffic_dalian"
+			description="customizes this project with the settings found in resources/traffic_dalian"
+			depends="enabletraffic_dalian, j2mepolish"
+	/>
+	
+	<target name="enabletraffic_haerbin">
+		<property name="customization" value="traffic_haerbin" />
+		<property name="build.traffic_haerbin" value="true" />
+	</target>
+		
+	<target name="buildtraffic_haerbin"
+			description="customizes this project with the settings found in resources/traffic_haerbin"
+			depends="enabletraffic_haerbin, j2mepolish"
+	/>
+	
+	<target name="enabletraffic_hefei">
+		<property name="customization" value="traffic_hefei" />
+		<property name="build.traffic_hefei" value="true" />
+	</target>
+		
+	<target name="buildtraffic_hefei"
+			description="customizes this project with the settings found in resources/traffic_hefei"
+			depends="enabletraffic_hefei, j2mepolish"
+	/>
+	
+	<target name="enabletraffic_nanning">
+		<property name="customization" value="traffic_nanning" />
+		<property name="build.traffic_nanning" value="true" />
+	</target>
+		
+	<target name="buildtraffic_nanning"
+			description="customizes this project with the settings found in resources/traffic_nanning"
+			depends="enabletraffic_nanning, j2mepolish"
+	/>
+	<target name="enabletraffic_chongqing">
+		<property name="customization" value="traffic_chongqing" />
+		<property name="build.traffic_chongqing" value="true" />
+	</target>
+		
+<target name="buildtraffic_chongqing"
+			description="customizes this project with the settings found in resources/traffic_chongqing"
+			depends="enabletraffic_chongqing, j2mepolish"
+/>
+<target name="enabletraffic_guiyang">
+		<property name="customization" value="traffic_guiyang" />
+		<property name="build.traffic_guiyang" value="true" />
+	</target>
+		
+<target name="buildtraffic_guiyang"
+			description="customizes this project with the settings found in resources/traffic_guiyang"
+			depends="enabletraffic_guiyang, j2mepolish"
+/>
+<target name="enabletraffic_hangzhou">
+		<property name="customization" value="traffic_hangzhou" />
+		<property name="build.traffic_hangzhou" value="true" />
+	</target>
+		
+<target name="buildtraffic_hangzhou"
+			description="customizes this project with the settings found in resources/traffic_hangzhou"
+			depends="enabletraffic_hangzhou, j2mepolish"
+/>
+<target name="enabletraffic_nanchang">
+		<property name="customization" value="traffic_nanchang" />
+		<property name="build.traffic_nanchang" value="true" />
+	</target>
+		
+<target name="buildtraffic_nanchang"
+			description="customizes this project with the settings found in resources/traffic_nanchang"
+			depends="enabletraffic_nanchang, j2mepolish"
+/>
+<target name="enabletraffic_shenyang">
+		<property name="customization" value="traffic_shenyang" />
+		<property name="build.traffic_shenyang" value="true" />
+	</target>
+		
+<target name="buildtraffic_shenyang"
+			description="customizes this project with the settings found in resources/traffic_shenyang"
+			depends="enabletraffic_shenyang, j2mepolish"
+/>
+<target name="enabletraffic_taiyuan">
+		<property name="customization" value="traffic_taiyuan" />
+		<property name="build.traffic_taiyuan" value="true" />
+	</target>
+		
+<target name="buildtraffic_taiyuan"
+			description="customizes this project with the settings found in resources/traffic_taiyuan"
+			depends="enabletraffic_taiyuan, j2mepolish"
+/>
+<target name="enabletraffic_fuzhou">
+		<property name="customization" value="traffic_fuzhou" />
+		<property name="build.traffic_fuzhou" value="true" />
+	</target>
+		
+<target name="buildtraffic_fuzhou"
+			description="customizes this project with the settings found in resources/traffic_fuzhou"
+			depends="enabletraffic_fuzhou, j2mepolish"
+/>
+<target name="enabletraffic_haikou">
+		<property name="customization" value="traffic_haikou" />
+		<property name="build.traffic_haikou" value="true" />
+	</target>
+		
+<target name="buildtraffic_haikou"
+			description="customizes this project with the settings found in resources/traffic_haikou"
+			depends="enabletraffic_haikou, j2mepolish"
+/>
+<target name="enabletraffic_kunming">
+		<property name="customization" value="traffic_kunming" />
+		<property name="build.traffic_kunming" value="true" />
+	</target>
+		
+<target name="buildtraffic_kunming"
+			description="customizes this project with the settings found in resources/traffic_kunming"
+			depends="enabletraffic_kunming, j2mepolish"
+/>
+<target name="enabletraffic_nanjing">
+		<property name="customization" value="traffic_nanjing" />
+		<property name="build.traffic_nanjing" value="true" />
+	</target>
+		
+<target name="buildtraffic_nanjing"
+			description="customizes this project with the settings found in resources/traffic_nanjing"
+			depends="enabletraffic_nanjing, j2mepolish"
+/>
+<target name="enabletraffic_shijiazhuang">
+		<property name="customization" value="traffic_shijiazhuang" />
+		<property name="build.traffic_shijiazhuang" value="true" />
+	</target>
+		
+<target name="buildtraffic_shijiazhuang"
+			description="customizes this project with the settings found in resources/traffic_shijiazhuang"
+			depends="enabletraffic_shijiazhuang, j2mepolish"
+/>
+<target name="enabletraffic_tianjing">
+		<property name="customization" value="traffic_tianjing" />
+		<property name="build.traffic_tianjing" value="true" />
+	</target>
+		
+<target name="buildtraffic_tianjing"
+			description="customizes this project with the settings found in resources/traffic_tianjing"
+			depends="enabletraffic_tianjing, j2mepolish"
+/>
+<target name="enabletraffic_xian">
+		<property name="customization" value="traffic_xian" />
+		<property name="build.traffic_xian" value="true" />
+	</target>
+		
+<target name="buildtraffic_xian"
+			description="customizes this project with the settings found in resources/traffic_xian"
+			depends="enabletraffic_xian, j2mepolish"
+/>
+
+	<target 
+		name="buildAllCustomizations"
+		description="Builds your application in all customizations." 
+		>
+		<!--
+		<subant target="buildtraffic_bj" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_sz" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_sh" buildpath="." genericantfile="build.xml" inheritall="false" ></subant> 
+		<subant target="buildtraffic_guangzhou" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_zhengzhou" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		
+		<subant target="buildtraffic_chengdu" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		
+		<subant target="buildtraffic_dalian" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_haerbin" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_changsha" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_wuhan" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_hefei" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_nanning" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		-->
+		<subant target="buildtraffic_chongqing" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_guiyang" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_hangzhou" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_nanchang" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_shenyang" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_taiyuan" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_fuzhou" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_haikou" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_kunming" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_nanjing" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_shijiazhuang" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_tianjing" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+		<subant target="buildtraffic_xian" buildpath="." genericantfile="build.xml" inheritall="false" ></subant>
+	</target>
+
+	
+
+</project>

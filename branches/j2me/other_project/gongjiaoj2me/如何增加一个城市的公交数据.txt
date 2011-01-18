@@ -1,0 +1,17 @@
+1.在build.xml 中增加如下两个target
+<target name="enabletraffic_bj">
+		<property name="customization" value="traffic_bj" />
+		<property name="build.traffic_bj" value="true" />
+	</target>
+		
+	<target name="buildtraffic_bj"
+			description="customizes this project with the settings found in resources/traffic_bj"
+			depends="enabletraffic_bj, j2mepolish"
+	/>
+	
+2.在build.xml target  buildAllCustomizations 中增加一行。
+
+3。在resource文件夹中增加一个对应城市的文件夹。
+4。在model.java文件中增加一个函数initRoadHash，添加该城市的数据
+
+5。编译即可
