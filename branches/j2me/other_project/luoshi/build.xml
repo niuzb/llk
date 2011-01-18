@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="j2mepolish" name="enough-polish-roadrunner">
+	
+	<!-- import user specific properties                          -->
+	<property file="${user.name}.properties" />
+	
+	<!-- The device which is used for the emulator.               -->
+	<!-- You can call Ant from the command line with another      -->
+	<!-- device like this: ant -Ddevice=Generic/midp2 emulator    -->
+	<property name="device" value="Generic/AnyPhone"/>
+	<property name="devices" value="${device}"/>
+
+	<!-- The polish.home property needs to point to the directory -->
+	<!-- containing the J2ME Polish installation.                 -->
+	<property name="polish.home" location="C:\Program Files\J2ME-Polish" />
+	<property name="polish.lib" location="${polish.home}/lib" />
+	<!-- import global properties                                 -->
+	<property file="${polish.home}/global.properties" />
+
+		
+	<!-- Definition of the J2ME Polish task:                      -->
+	<taskdef name="j2mepolish" 
+		classname="de.enough.polish.ant.PolishTask" 
+		classpath="${polish.home}/lib/enough-j2mepolish-build.jar"
+	/>
+		
+	<!-- build targets, each target can be called via "ant [name]", 
+		 e.g. "ant clean", "ant notest j2mepolish" or just "ant" for calling the default-target -->
+	
+	<target name="test">
+		<property name="test" value="true"/>
+		<property name="dir.work" value="build/test"/>
+	</target>
+		
+	<target name="deploy">
+		<property name="deploy-url" value="http://193.22.164.185:8080/"/>
+	</target>
+			
+	<target name="init">
+	  	<property name="test" value="false"/>
+		<property name="deploy-url" value=""/>
+		<property name="dir.work" value="build/real"/>
+		<property name="resource.dir" value="resources" />
+	</target>
+	    
+	<target depends="init" name="j2mepolish">
+		<j2mepolish>
+		    <!-- general settings -->
+			<info 
+				name="tetric" 
+				vendorName="Enough Software" 
+				version="1.0.1"
+				copyright="Copyright 2005 - 2009 Enough Software. All rights reserved." 
+				description="A frogger clone." 
+				icon="dot.png"
+				infoUrl="http://www.enough.de" 
+				jarName="${polish.vendor}-${polish.name}-${polish.locale}-dazhan.jar" 
+				jarUrl="${deploy-url}${polish.jarName}" 
+				deleteConfirm="Do you really want to remove Roadrunner?" 
+		    />
+			<!-- selection of supported devices -->
+			<deviceRequirements if="test">
+				<requirement name="Identifier" value="${device}"/>
+			</deviceRequirements>
+			<deviceRequirements unless="test">
+				<requirement name="Identifier" value="${devices}"/>
+			</deviceRequirements>
+		    <!-- build settings -->
+			<build	fullscreen="menu" 
+					usePolishGui="true"
+					sourceDir="source/src"
+					workDir="${dir.work}"
+				>
+				<!-- midlets definition -->
+				<midlet class="net.xylophones.micro.game.mb.Midlet" name="tetric"/>
+				<!-- project-wide variables - used for preprocessing  -->
+				<variables>
+					<variable name="polish.TiledLayer.useBackBuffer" value="true"/>
+					<variable name="polish.TiledLayer.TransparentTileColor" value="0x00FF00"/>
+				</variables>
+				<libraries>
+				        <library file="${polish.lib}/custom/ImageString-1.0.0.jar"/>
+				        <library file="${polish.lib}/custom/MicroSound-1.0.0.jar"/>
+				        <library file="${polish.lib}/custom/SelectSlider-1.0.0.jar"/>
+				        <library file="${polish.lib}/custom/SimpleDb-1.0.0.jar"/>
+				        <library file="${polish.lib}/custom/ThreadedCanvases-1.0.0.jar"/>
+				        <library file="${polish.lib}/custom/Vibrator-1.0.0.jar"/>
+				</libraries>
+				<resources
+					dir="${resource.dir}"
+					defaultexcludes="yes"
+					excludes="readme.txt"
+				>
+					<!-- you can add resources based on complex criterias: 
+					<fileset 
+						dir="resources/multimedia" 
+						includes="*.wav" 
+						if="polish.audio.wav" 
+					/>
+					<fileset 
+						dir="resources/multimedia" 
+						includes="*.mid" 
+						if="polish.audio.midi and not polish.audio.wav" 
+					/>
+					-->
+					<!-- you can also use several root directories for your resource assembling.
+					     This is useful for customizations and for having a cleanly structured 
+					     resources directory (for example seperating images from sounds, etc):
+					<root dir="resources/images" />
+					<root dir="resources/sounds" />
+					<root dir="resources/customer1" if="customer1" />
+					<root dir="resources/customer2" if="customer2" />
+					-->
+					<root dir="resources/data" />
+					<root dir="resources/image" />
+					<!-- add the localization element for created localized
+					     versions of your application: -->
+					<!-- <localization locales="de_DE, en_US" unless="test" />
+					<localization locales="en_US" unless="test" />-->
+					
+					<localization>		
+						<locale name="cn" encoding="GB2312" />
+					</localization>
+	
+				</resources>
+				
+				<manifestFilter if="polish.vendor == Samsung">
+					Manifest-Version, MIDlet-Name, MIDlet-Version, 
+					MIDlet-Vendor, MIDlet-1*,MIDlet-Icon?, MIDlet-Data-Size?, 
+					MIDlet-Description?, MIDlet-Info-URL?,
+					MicroEdition-Profile?, MicroEdition-Configuration?
+				</manifestFilter>
+				<jad>
+					<filter if="polish.vendor == Samsung">
+						MIDlet-Name, MIDlet-Version, MIDlet-Vendor,  
+						MIDlet-1*,MIDlet-Icon?, MIDlet-Data-Size?, MIDlet-Description?,
+						MIDlet-Info-URL?, MicroEdition-Profile?, MicroEdition-Configuration?
+					</filter>
+				</jad>
+				<!-- obfuscator settings: do not obfuscate when the test-property is true -->
+				<obfuscator name="ProGuard" unless="test or polish.blackberry" />
+				<!-- debug settings: only include debug setting when the test-property is true -->
+				<debug level="error">
+					
+				</debug>
+				
+			</build>
+			<!-- launch emulator		-->
+			<emulator  />
+	
+		</j2mepolish>
+	</target>
+	
+	<target 
+		name="emulator"
+		depends="test,j2mepolish"
+		description="invokes the emulator"
+	>
+	</target>
+	
+	<target description="allows a clean build. You should call [ant clean] whenever you made changes to devices.xml, vendors.xml or groups.xml" name="clean">
+		<delete dir="build"/>
+		<delete dir="dist" includes="**/*" />
+	</target>
+
+	<target  
+		name="cleanbuild"
+		description="allows a clean build. You should call [ant cleanbuild] whenever you made changes to devices.xml, vendors.xml or groups.xml"
+		depends="clean, j2mepolish"
+	/>
+
+</project>

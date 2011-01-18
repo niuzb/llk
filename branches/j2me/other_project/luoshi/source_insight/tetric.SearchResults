@@ -1,0 +1,7 @@
+---- userBlock Matches (6 in 1 files) ----
+BoardView.java (source\src\net\xylophones\micro\game\mb\mvc\board):    private TiledLayer userBlock;
+BoardView.java (source\src\net\xylophones\micro\game\mb\mvc\board):        userBlock.paint(g);
+BoardView.java (source\src\net\xylophones\micro\game\mb\mvc\board):        userBlock = new TiledLayer(4, 4, tiles, cellSize, cellSize);
+BoardView.java (source\src\net\xylophones\micro\game\mb\mvc\board):                    userBlock.setCell(i, j, tileIndex);
+BoardView.java (source\src\net\xylophones\micro\game\mb\mvc\board):                    userBlock.setCell(i, j, 0);
+BoardView.java (source\src\net\xylophones\micro\game\mb\mvc\board):        userBlock.setPosition( cellSize*model.getBlockCellX(), 
