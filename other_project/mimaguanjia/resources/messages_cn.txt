@@ -1,0 +1,82 @@
+#######################################
+#                                     #
+#   This file contains translations   #
+#   of the application.               #
+#   Key and Value are separated       #
+#   by the equals-sign "=".           #
+#                                     #
+#######################################
+
+
+cmd.StartGame=Start Game
+cmd.Quit=Exit
+cmd.ShowLog=Show Log
+
+menu.StartGame=开始游戏
+menu.LoadGame=载入
+menu.Highscore=最高分
+menu.Quit=结束
+
+messages.welcome=欢迎您
+messages.keyany=请按任意键继续
+Application.Copyright=(C) 2003
+Application.Author=Martin J. Wells
+Application.Press key=Press a key
+
+Main_Menu.Title=密码管家
+Main_Menu.new_note=添加新记录
+Main_Menu.see_note=查看已有记录
+Main_Menu.set_login=更新登陆密码
+Main_Menu.note=记录
+Main_Menu.Settings=设置
+Main_Menu.Help=帮助
+Main_Menu.About=关于
+Main_Menu.login=确定
+Settings_Menu.Title=设置
+Settings_Menu.music_on=音乐开
+Settings_Menu.music_off=音乐关
+Settings_Menu.random=重排
+Settings_Menu.edit=编辑
+firstlogin=这是您第一次登陆,请设置登陆密码:
+doitaging = 再次输入:
+General.About=如有任何问题,请联系niuzb1@gmail.com.
+General.Help=随时记录你生活中的点点滴滴,即使只有一句话...
+General.sorry =对不起,密码不一致
+General.sorry1 =设置密码错误
+General.sorry2 =原始密码错误
+General.sorry3 =错误:原始密码和设置密码相同
+General.sorry4 =错误:字段不能为空
+General.sorry5 =登陆密码错误
+General.setok =设置成功
+General.Save=保存
+General.remember=请牢记你的登陆密码
+firstform.origin_pass=原始密码
+
+General.Yes=确定
+General.ret=返回
+General.No=取消
+General.On=开
+General.Off=关
+General.Exit=退出
+General.Back=后退
+General.Delete=删除
+General.Time=时间
+General.Save_OK=保存成功
+General.edit=编辑
+General.Input=名称:
+General.User=用户名:
+General.Pass=密码:
+General.Remark=备注:
+firstform.set1=登陆密码:
+firstform.set2=重新输入:
+firstform.passward=请输入登陆密码
+cmd.ShowLog=show log
+var:polish.command.select=选择
+var:polish.command.options=选项
+var:polish.command.delete=删字
+var:polish.command.clear=清除内容
+var:polish.command.cancel=取消
+var:polish.command.ok=确定
+setform.set1=原始登陆密码:
+setform.set2=新的登陆密码:
+setform.set3=重新输入:

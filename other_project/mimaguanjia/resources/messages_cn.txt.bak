@@ -1,0 +1,62 @@
+#######################################
+#                                     #
+#   This file contains translations   #
+#   of the application.               #
+#   Key and Value are separated       #
+#   by the equals-sign "=".           #
+#                                     #
+#######################################
+
+
+cmd.StartGame=Start Game
+cmd.Quit=Exit
+cmd.ShowLog=Show Log
+
+menu.StartGame=开始游戏
+menu.LoadGame=载入
+menu.Highscore=最高分
+menu.Quit=结束
+
+messages.welcome=欢迎您
+messages.keyany=请按任意键继续
+Application.Copyright=(C) 2003
+Application.Author=Martin J. Wells
+Application.Press key=Press a key
+
+Main_Menu.Title=我的记录
+Main_Menu.new_note=新记录
+Main_Menu.see_note=查看记录
+Main_Menu.note=记录
+Main_Menu.Settings=设置
+Main_Menu.Help=帮助
+Main_Menu.About=关于
+
+Settings_Menu.Title=设置
+Settings_Menu.music_on=音乐开
+Settings_Menu.music_off=音乐关
+Settings_Menu.random=重排
+Settings_Menu.edit=编辑
+
+General.About=本游戏由仙乐工作组提供,如有任何问题,请联系niuzb1@gmail.com.
+General.Help=随时记录你生活中的点点滴滴,即使只有一句话...
+
+General.Save=保存
+
+General.Yes=确定
+General.No=取消
+General.On=开
+General.Off=关
+General.Exit=退出
+General.Back=后退
+General.Delete=删除
+General.Time=时间
+General.Save_OK=保存成功
+General.edit=编辑
+General.Input=输入
+cmd.ShowLog=show log
+var:polish.command.select=选择
+var:polish.command.options=选项
+var:polish.command.delete=删除
+var:polish.command.clear=清除内容
+var:polish.command.cancel=取消
+var:polish.command.ok=确定
