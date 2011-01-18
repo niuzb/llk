@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Traffic!</string>
+    <string name="app_name">traffic_sh</string>
+ <string name="title">上海公交查询</string>
+<string name="interchage">换乘</string>
+<string name="start">起始站</string>
+<string name="end">终点站</string>
+<string name="ok">查询</string>
+<string name="line">线路</string>
+<string name="station">站点</string>
+<string name="result">结果</string>
+<string name="conform">确定</string>
+<string name="sorry">对不起</string>
+<string name="find_nothing">没有找到相关信息</string>
+<string name="cancel">取消</string>
+<string name="upload">上行</string>
+<string name="download">下行</string>
+<string name="select_one_road">请选择线路</string>
+<string name="station_from_line">经过<b><i>%1$s</i></b>的线路有</string>
+<string name="suggst_road">建议线路</string>
+<string name="gongjiao">公交</string>
+<string name="bus_name">公交<b><i>%1$s</i></b>路</string>
+<string name="chufa1">先乘坐</string>
+<string name="daoda1">再乘坐</string>
+<string name="chufa">起始站</string>
+<string name="daoda">到达站</string>
+<string name="start_end">首末站</string>
+<string name="exit">退出</string>
+</resources>
