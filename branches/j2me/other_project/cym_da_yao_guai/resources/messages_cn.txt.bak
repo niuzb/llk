@@ -1,0 +1,72 @@
+#######################################
+#                                     #
+#   This file contains translations   #
+#   of the application.               #
+#   Key and Value are separated       #
+#   by the equals-sign "=".           #
+#                                     #
+#######################################
+
+
+cmd.StartGame=Start Game
+cmd.Quit=Exit
+cmd.ShowLog=Show Log
+
+menu.StartGame=开始游戏
+menu.LoadGame=载入
+menu.Highscore=最高分
+menu.Quit=结束
+
+messages.welcome=欢迎您
+messages.keyany=请按任意键继续
+messages.gameover= 对不起,你失败了.
+Application.Copyright=(C) 2003
+Application.Author=Martin J. Wells
+Application.Press key=Press a key
+
+Main_Menu.Title=菜单
+Main_Menu.New_Game=新游戏
+Main_Menu.Resume_Game=继续游戏
+Main_Menu.Play_again=再玩一次
+Main_Menu.Settings=设置
+Main_Menu.Help=帮助
+Main_Menu.About=关于
+
+Settings_Menu.Title=设置
+Settings_Menu.music_on=音乐开
+Settings_Menu.music_off=音乐关
+Settings_Menu.random=重排
+Settings_Menu.hint=提示
+
+General.About=本游戏由仙乐工作组提供,如有任何问题,请联系niuzb1@gmail.com.
+General.Help=纯爷门之开飞机打小怪,各位GGMM们,来练练你对飞机的控制能力吧,消灭所有的小怪,即进入下一关.每一关结束都可根据得分增加自己的武器弹药,飞机速度等属性.
+
+
+
+General.Yes=确定
+General.No=取消
+General.On=开
+General.Off=关
+General.Exit=退出
+General.Back=后退
+General.Are_you_sure=您确定重新开始新的游戏吗
+General.Enable=enable
+
+SuccessDisplay.score=得分
+SuccessDisplay.congratulation=恭喜你过了第{0}关
+SuccessDisplay.lefttime=+剩余时间:
+SuccessDisplay.sumscore=总分:
+SuccessDisplay.leftscore=剩余得分:
+SuccessDisplay.addrand=血: 30分 * 
+SuccessDisplay.addhint=火力: 50分 * 
+SuccessDisplay.speed=速度: 15分 * 
+display.level=关数
+display.blood=血
+display.speed=速度
+display.bullet=火力
+var:polish.command.select=选择
+var:polish.command.options=选项
+var:polish.command.delete=删字
+var:polish.command.clear=清除内容
+var:polish.command.cancel=取消
+var:polish.command.ok=确定
