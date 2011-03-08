@@ -7,6 +7,7 @@ import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 import javax.microedition.rms.*;
 import de.enough.polish.util.*;
+import java.lang.Thread;
 
 
 /**
@@ -14,7 +15,7 @@ import de.enough.polish.util.*;
  * data, animates the objects, keeps track of state, and triggers
  * screen redraws.
  */
-public class Engine implements Thread {
+public class Engine implements Runnable {
     public static final int PATTERN_WIDTH = 5;
     public static Engine ME;
     // engine states
