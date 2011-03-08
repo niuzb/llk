@@ -49,7 +49,7 @@ public class Racer {
         fontMedium = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
       
         for(int i=0; i<Global.NR_SECONDARY_WEAPONS; i++)
-            secondaryWeaponsAvailability[i] = false;
+            secondaryWeaponsAvailability[i] = true;
         maxShield = Global.LIGHT_FIGHTER_MAX_SHIELD;
         maxDamage = Global.LIGHT_FIGHTER_MAX_DAMAGE;
         shield = maxShield;

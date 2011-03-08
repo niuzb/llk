@@ -289,7 +289,7 @@ import de.enough.polish.util.*;
           //System.out.println("xxxx"+d);
           for (int i = 0; i < engine.enemys.getNrEnemys(); i++ ) {
             int type =engine.enemys.getEnemy(i).getType();
-        	if (Global.ENEMY_FLYING[type] &&
+        	if (/*Global.ENEMY_FLYING[type] &&*/
         	     engine.enemys.getEnemy(i).collidesWith( box ) ) {
         	  processCollide(i);
         	  return true;
@@ -330,7 +330,7 @@ import de.enough.polish.util.*;
       case Global.SHOT_HELLFIRE:
         {
           for (int i = 0; i < engine.enemys.getNrEnemys(); i++ ) {
-        	if ( (!Global.ENEMY_FLYING[ engine.enemys.getEnemy(i).getType() ]) && 
+        	if ( /*(!Global.ENEMY_FLYING[ engine.enemys.getEnemy(i).getType() ]) && */
         	     engine.enemys.getEnemy(i).collidesWith( new Circle(pos, 15) ) ) {
         	  processCollide(i);
         	  return true;
